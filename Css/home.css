@@ -83,6 +83,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 1.44rem;
+  position: relative;
 }
 .new-expense {
   font-size: 1.33rem;
@@ -92,6 +93,98 @@
   padding-block: 0.75rem;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
   transition: background-color 0.3s;
+}
+.new-expense-form {
+  position: absolute;
+  top: calc(100% + 10px);
+  display: none;
+  background-color: #353535;
+  padding: 20px;
+  border-radius: 8px;
+}
+.new-expense-form input,
+.new-expense-form select {
+  padding: 3px;
+  color: black;
+  background-color: white;
+}
+.new-expense-form input:focus,
+.new-expense-form select:focus {
+  outline: none;
+}
+.new-expense-form.active {
+  display: block;
+}
+.new-expense-form * {
+  background-color: inherit;
+}
+.new-expense-form .flex {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+.new-expense-form .flex .expenses-types {
+  position: absolute;
+  right: calc(100% + 25px);
+  top: 0px;
+  border-radius: 8px;
+  overflow: hidden;
+  display: none;
+}
+.new-expense-form .flex .expenses-types.active {
+  display: block;
+}
+.new-expense-form .flex .types-container p {
+  color: white;
+  font-size: large;
+  font-weight: bold;
+}
+.new-expense-form .flex .type {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  font-size: large;
+  padding: 10px;
+  transition: background-color 0.3s ease-in-out;
+  cursor: pointer;
+}
+.new-expense-form .flex .type:hover {
+  background-color: hsl(0, 0%, 29%);
+}
+.new-expense-form .flex .type * {
+  color: white;
+  font-size: large;
+  font-weight: bold;
+}
+.new-expense-form .flex .type .img-container {
+  background-color: #51d289;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+.new-expense-form .flex-vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+}
+.new-expense-form button {
+  width: 100%;
+  padding: 8px;
+  font-weight: bold;
+  background-color: #ffe600;
+  transition: background-color 0.3s linear;
+  cursor: pointer;
+  color: black;
+}
+.new-expense-form button:hover {
+  background-color: #f2d600;
 }
 .new-expense:hover {
   background-color: #f2d600;
@@ -116,6 +209,18 @@
 @media (max-width: 744px) {
   .nav-right .user {
     display: none;
+  }
+  .new-expense-form {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+  }
+  .new-expense-form .flex .expenses-types {
+    right: 50%;
+    top: calc(100% + 90px);
+    transform: translate(50%);
   }
 }
 

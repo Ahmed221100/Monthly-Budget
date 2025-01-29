@@ -37,6 +37,70 @@
           <span class="welcome">Welcome</span
           ><span class="user-name">Alexander</span>
         </div>
+        <div class="new-expense-form">
+          <div class="flex">
+            <div class="types-container">
+              <p>Type:</p>
+              <div class="selected-type" onclick="openExpensesTypesMenu()">
+                <div class="type">
+                  <div class="img-container">
+                    <img src="./assets/creditcart.svg" alt="debit-icon" />
+                  </div>
+                  <p>Debit</p>
+                </div>
+              </div>
+              <div class="expenses-types">
+                <div class="container">
+                  <div class="type">
+                    <div class="img-container">
+                      <img src="./assets/creditcart.svg" alt="debit-icon" />
+                    </div>
+                    <p>Debit</p>
+                  </div>
+                  <div class="type">
+                    <div class="img-container">
+                      <img src="./assets/food.svg" alt="debit-icon" />
+                    </div>
+                    <p>Food</p>
+                  </div>
+                  <div class="type">
+                    <div class="img-container">
+                      <img src="./assets/hobbies.svg" alt="debit-icon" />
+                    </div>
+                    <p>Hobbie</p>
+                  </div>
+                  <div class="type">
+                    <div class="img-container">
+                      <img src="./assets/home.svg" alt="debit-icon" />
+                    </div>
+                    <p>Rent</p>
+                  </div>
+                  <div class="type">
+                    <div class="img-container">
+                      <img src="./assets/saving.svg" alt="debit-icon" />
+                    </div>
+                    <p>Savings</p>
+                  </div>
+                  <div class="type">
+                    <div class="img-container">
+                      <img src="./assets/health.svg" alt="debit-icon" />
+                    </div>
+                    <p>Health</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="flex-vertical">
+              <input type="text" placeholder="Title" class="expense-title" />
+              <input
+                type="number"
+                placeholder="Amount"
+                class="expense-amount"
+              />
+            </div>
+          </div>
+          <button id="add-expense">Add Expense</button>
+        </div>
       </div>
     </nav>
     <secttion class="hero"
@@ -50,12 +114,12 @@
         </div>
         <div class="description">
           <p class="top-description">
-            Looks Like You Haven't<br />Added Any <span>Expenses Yet.</span>
+            Looks Like You Haven't<br />Added Any
+            <span>Expenses Yet.</span>
           </p>
-
           <p class="bottom-description">
-            No Worries, Just Hit The <span>'Add'</span> Button<br />To Get
-            Started
+            No Worries, Just Hit The
+            <span>'Add'</span> Button<br />To Get Started
           </p>
           <img src="assets/cart.svg" alt="cart" class="cart" />
         </div>
@@ -83,7 +147,9 @@
             <p class="spent-amount">&pound;2700</p>
           </div>
         </div>
-        <button class="new-expense">Reset Expenses</button>
+        <button class="new-expense" onclick="ResetAllExpenses()">
+          Reset Expenses
+        </button>
       </div>
       <div class="optionals">
         <p class="optionals-title">Optionals</p>
