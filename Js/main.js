@@ -1,5 +1,42 @@
-// chart js
 
+
+// <!--------------------------------------start Signin-------------------------------------->
+function validateForm() {
+  var income = document.getElementById("income").value;
+  var names = document.getElementById("name").value;
+  var goals = document.getElementById("goal").value;
+  var errorMessage = document.getElementById("error-message");
+
+  if (income == "" || names == "" || goals == "") {
+    errorMessage.innerHTML = "Please fill out all fields.";
+    // console.log('income',income);
+    // console.log('names',names);
+    // console.log('goals ',goals)
+    return false;
+  }
+  // إذا كانت القيمة ليست رقمًا
+  if (isNaN(income) || Number(income) <= 0) {
+    errorMessage.innerHTML = "Please enter a valid and positive income value.";
+    return false;
+  }
+
+  if (!/^[a-zA-Z\s]+$/.test(names)) {
+    errorMessage.innerHTML = "Please enter a valid names.";
+    return false;
+  }
+  if (!/^[a-zA-Z0-9\s,]+$/.test(goals)) {
+    errorMessage.textContent =
+      "Please enter valid targets that contain only letters, numbers, and commas.";
+    return false;
+  }
+
+  errorMessage.innerHTML = "";
+  return true;
+}
+
+// <!--------------------------------------End Signin-------------------------------------->
+
+// chart js
 document.addEventListener("DOMContentLoaded", () => {
   const ctx = document.querySelector(".budget-chart").getContext("2d");
 
@@ -81,7 +118,7 @@ submitExpenseBtn.addEventListener("click", () => {
       imgPath: expenseType.querySelector("img").getAttribute("src"),
     },
     date: currDate,
-    id: Date.now()
+    id: Date.now(),
   };
   // verification
   if (!expenseAmount.value || !expenseTitle.value) {

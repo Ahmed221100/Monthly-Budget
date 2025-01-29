@@ -1,58 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Fontawsome  -->
-    <link rel="stylesheet" href="Css/all.min.css" />
-    <!-- Bootstrap  -->
-    <link rel="stylesheet" href="Css/bootstrap.min.css" />
-    <!-- favicone  -->
-    <link rel="shortcut icon" href="assets/" type="image/x-icon" />
-    <!-- Google font  -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
-      rel="stylesheet"
-    />
-    <!-- link css  -->
-    <link rel="stylesheet" href="Css/Style.css" />
-    <title>Welcome</title>
-  </head>
-  <body>
-    <!--------------------------------------start Signin-------------------------------------->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Fontawsome  -->
+   <link rel="stylesheet" href="Css/all.min.css">
+<!-- Bootstrap  -->
+ <link rel="stylesheet" href="Css/bootstrap.min.css">
+ <!-- favicone  -->
+  <link rel="shortcut icon" href="assets/" type="image/x-icon">
+  <!-- Google font  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  <!-- link css  -->
+   <link rel="stylesheet" href="Css/Style.css">
+  <title>Welcome</title>
+</head>
+<body>
+<!--------------------------------------start Signin-------------------------------------->
 
-    <div class="container w-100">
-      <div class="row d-flex align-items-center justify-content-center g-0">
-        <div class="col-sm-12 col-md-6">
-          <div class="layer position-relative">
-            <div class="img-content">
-              <h3>Calculate smarter, spend wiser ...</h3>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-6">
-          <div class="form-group">
-            <h2 class="">Monthly <span class="h2">Budget</span></h2>
-            <form action="">
-              <input type="text" placeholder="Input Your Income" />
 
-              <input type="text" placeholder="Insert Your Name" />
-              <input type="text" placeholder="Insert Your Goals" />
-              <button type="submit">start your calculation</button>
-            </form>
-          </div>
-        </div>
+
+<div class="container w-75 ">
+  <div class="row d-flex align-items-center justify-content-center g-0">
+    <div class="col-sm-12 col-md-6">
+      <div class="layer position-relative">
+      <div class="img-content ">
+        <h3>
+          Calculate smarter, 
+spend wiser ...
+        </h3>
+      </div>
       </div>
     </div>
+    <div class="col-sm-12 col-md-6">
+      <div class="form-group">
+        <h2 class=""> Monthly <span class="h2">Budget</span></h2>
+          <form action="" onsubmit="return validateForm()">
+            <input class="w-100" name="income" id="income" type="number" placeholder="Input Your Income">
+            <input class="w-100" name="Name" id="name" type="text" placeholder="Insert Your Name">
+            <input class="w-100" name="Goals" id="goal" type="text" placeholder="Insert Your Goals">
+            <span id="error-message"></span>
+<button type="submit"><a href="home.html">start your calculation</a></button>   
+     </form>
+    </div>
+    </div>
 
-    <!--------------------------------------end Signin-------------------------------------->
-    <!-- Fontawsome  -->
-    <script src="Js/all.min.js"></script>
-    <!-- Bootstrap  -->
-    <script src="Js/bootstrap.bundle.min.js"></script>
-    <!-- link Js  -->
-    <script src="Js/main.js"></script>
-  </body>
+  </div>
+</div>
+
+
+<!--------------------------------------End Signin-------------------------------------->
+  <!-- Fontawsome  -->
+<script src="Js/all.min.js"></script>
+  <!-- Bootstrap  -->
+<!-- <script src="Js/bootstrap.bundle.min.js"></script> -->
+  <!-- link Js  -->
+   <script src="Js/main.js"></script>
+
+</body>
 </html>
