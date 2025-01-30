@@ -1,13 +1,38 @@
+const incomeAmountField = document.querySelector(".income-amount");
+const availableAmountField = document.querySelector(".available-amount");
+const spentAmountField = document.querySelector(".spent-amount");
+const spentPercentageField = document.querySelector(".spent-percentage");
+let income = localStorage.getItem("user-income");
+let spent = 0;
+let budgetChart;
+const calculateExpenses = () => {
+  income = localStorage.getItem("user-income");
+  spent = getExpensesFromLocalStorage();
+  getExpensesFromLocalStorage();
+  incomeAmountField.innerHTML = `&pound;${income}`;
+  spentAmountField.innerHTML = `&pound;${spent}`;
+  availableAmountField.innerHTML = `&pound;${income - spent}`;
+  crateChart();
+};
+const getExpensesFromLocalStorage = () => {
+  let expenses = JSON.parse(localStorage.getItem("curr-expenses"));
+  let total = 0;
+  expenses?.map((e) => {
+    total += +e.amount;
+  });
+  return total;
+};
 // chart js
-
-document.addEventListener("DOMContentLoaded", () => {
+const crateChart = () => {
   const ctx = document.querySelector(".budget-chart").getContext("2d");
-
+  let spentPercentage = (spent / income) * 100;
+  spentPercentageField.innerText = `${spentPercentage}%`;
+  console.log(spentPercentage);
   const data = {
     labels: ["Spent", "Available"],
     datasets: [
       {
-        data: [20, 80],
+        data: [spentPercentage, 100 - spentPercentage],
         backgroundColor: ["#51D289", "#D2D2D2"],
         borderWidth: 0,
       },
@@ -36,7 +61,8 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const budgetChart = new Chart(ctx, config);
-});
+};
+// document.addEventListener("DOMContentLoaded", );
 
 const newExpenseBtn = document.querySelector(".new-expense");
 const newExpenseForm = document.querySelector(".new-expense-form");
@@ -81,7 +107,7 @@ submitExpenseBtn.addEventListener("click", () => {
       imgPath: expenseType.querySelector("img").getAttribute("src"),
     },
     date: currDate,
-    id: Date.now()
+    id: Date.now(),
   };
   // verification
   if (!expenseAmount.value || !expenseTitle.value) {
@@ -97,7 +123,8 @@ submitExpenseBtn.addEventListener("click", () => {
   } else {
     localStorage.setItem("curr-expenses", JSON.stringify([newExpense]));
   }
-
+  // recalculating the buget
+  calculateExpenses();
   // resetting input value
   expenseAmount.value = "";
   expenseTitle.value = "";
@@ -124,4 +151,6 @@ typesArray.forEach((type) =>
 
 const ResetAllExpenses = () => {
   localStorage.removeItem("curr-expenses");
+  calculateExpenses();
 };
+window.addEventListener("load", calculateExpenses);
