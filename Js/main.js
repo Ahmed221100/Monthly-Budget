@@ -1,50 +1,38 @@
-
-
-// <!--------------------------------------start Signin-------------------------------------->
-function validateForm() {
-  var income = document.getElementById("income").value;
-  var names = document.getElementById("name").value;
-  var goals = document.getElementById("goal").value;
-  var errorMessage = document.getElementById("error-message");
-
-  if (income == "" || names == "" || goals == "") {
-    errorMessage.innerHTML = "Please fill out all fields.";
-    // console.log('income',income);
-    // console.log('names',names);
-    // console.log('goals ',goals)
-    return false;
-  }
-  // إذا كانت القيمة ليست رقمًا
-  if (isNaN(income) || Number(income) <= 0) {
-    errorMessage.innerHTML = "Please enter a valid and positive income value.";
-    return false;
-  }
-
-  if (!/^[a-zA-Z\s]+$/.test(names)) {
-    errorMessage.innerHTML = "Please enter a valid names.";
-    return false;
-  }
-  if (!/^[a-zA-Z0-9\s,]+$/.test(goals)) {
-    errorMessage.textContent =
-      "Please enter valid targets that contain only letters, numbers, and commas.";
-    return false;
-  }
-
-  errorMessage.innerHTML = "";
-  return true;
-}
-
-// <!--------------------------------------End Signin-------------------------------------->
-
+const incomeAmountField = document.querySelector(".income-amount");
+const availableAmountField = document.querySelector(".available-amount");
+const spentAmountField = document.querySelector(".spent-amount");
+const spentPercentageField = document.querySelector(".spent-percentage");
+let income = localStorage.getItem("user-income");
+let spent = 0;
+let budgetChart;
+const calculateExpenses = () => {
+  income = localStorage.getItem("user-income");
+  spent = getExpensesFromLocalStorage();
+  getExpensesFromLocalStorage();
+  incomeAmountField.innerHTML = `&pound;${income}`;
+  spentAmountField.innerHTML = `&pound;${spent}`;
+  availableAmountField.innerHTML = `&pound;${income - spent}`;
+  crateChart();
+};
+const getExpensesFromLocalStorage = () => {
+  let expenses = JSON.parse(localStorage.getItem("curr-expenses"));
+  let total = 0;
+  expenses?.map((e) => {
+    total += +e.amount;
+  });
+  return total;
+};
 // chart js
-document.addEventListener("DOMContentLoaded", () => {
+const crateChart = () => {
   const ctx = document.querySelector(".budget-chart").getContext("2d");
-
+  let spentPercentage = (spent / income) * 100;
+  spentPercentageField.innerText = `${spentPercentage}%`;
+  console.log(spentPercentage);
   const data = {
     labels: ["Spent", "Available"],
     datasets: [
       {
-        data: [20, 80],
+        data: [spentPercentage, 100 - spentPercentage],
         backgroundColor: ["#51D289", "#D2D2D2"],
         borderWidth: 0,
       },
@@ -72,8 +60,9 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   };
 
-  const budgetChart = new Chart(ctx, config);
-});
+  budgetChart = new Chart(ctx, config);
+};
+// document.addEventListener("DOMContentLoaded", );
 
 const newExpenseBtn = document.querySelector(".new-expense");
 const newExpenseForm = document.querySelector(".new-expense-form");
@@ -134,7 +123,8 @@ submitExpenseBtn.addEventListener("click", () => {
   } else {
     localStorage.setItem("curr-expenses", JSON.stringify([newExpense]));
   }
-
+  // recalculating the buget
+  calculateExpenses();
   // resetting input value
   expenseAmount.value = "";
   expenseTitle.value = "";
@@ -161,4 +151,6 @@ typesArray.forEach((type) =>
 
 const ResetAllExpenses = () => {
   localStorage.removeItem("curr-expenses");
+  calculateExpenses();
 };
+window.addEventListener("load", calculateExpenses);
