@@ -78,7 +78,7 @@ form {
 }
 form input {
   text-align: center;
-
+ width: 90%;
   
  background-color:rgb(30, 30, 30);
  border-bottom: 1px solid #A3A3A3;

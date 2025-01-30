@@ -25,9 +25,14 @@ const getExpensesFromLocalStorage = () => {
 // chart js
 const crateChart = () => {
   const ctx = document.querySelector(".budget-chart").getContext("2d");
+
+  if (budgetChart) {
+    budgetChart.destroy();
+  }
+
   let spentPercentage = (spent / income) * 100;
-  spentPercentageField.innerText = `${spentPercentage}%`;
-  console.log(spentPercentage);
+  spentPercentageField.innerText = `${spentPercentage.toFixed(2)}%`;
+
   const data = {
     labels: ["Spent", "Available"],
     datasets: [
@@ -51,7 +56,7 @@ const crateChart = () => {
         tooltip: {
           callbacks: {
             label: function (tooltipItem) {
-              return `${tooltipItem.label}: ${tooltipItem.raw} %`;
+              return `${tooltipItem.label}: ${tooltipItem.raw.toFixed(2)} %`;
             },
           },
         },
@@ -60,8 +65,10 @@ const crateChart = () => {
     },
   };
 
+  // Assign the new chart instance to budgetChart
   budgetChart = new Chart(ctx, config);
 };
+
 // document.addEventListener("DOMContentLoaded", );
 
 const newExpenseBtn = document.querySelector(".new-expense");
